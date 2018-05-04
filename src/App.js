@@ -28,7 +28,11 @@ class App extends React.Component {
 
   fetchGifs() {
     this.cancel('Canceling any on going request to giphy');
-    this.state.query && axios
+    if (!this.state.query) {
+      this.setState({ results: [] });
+      return;
+    }
+    axios
       .get('http://api.giphy.com/v1/gifs/search', {
         cancelToken: new axios.CancelToken(cancel => this.cancel = cancel),
         params: {
@@ -52,8 +56,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <form>
-          <input type="text" value={this.state.query} onChange={this.updateQuery}/>
-          <input type="range" min={1} max={25} value={this.state.limit} onChange={this.updateLimit} />
+          <label>Recherche : <input type="text" value={this.state.query} onChange={this.updateQuery}/></label>
+          <label>Nombre de resultats : <input type="range" min={1} max={25} value={this.state.limit} onChange={this.updateLimit} /></label>
         </form>
 
         <div>

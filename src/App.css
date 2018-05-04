@@ -1,4 +1,13 @@
-.App {
-  text-align: center;
+body {
+    background-color: blanchedalmond
 }
 
+.App label {
+    display: block;
+    margin: 0 10px;
+}
+
+.App img {
+    border: 2px solid black;
+    margin: 0 0 10px 10px;
+}
