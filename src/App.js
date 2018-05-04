@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { SearchForm } from "./SearchForm";
 import * as api from "./api";
-import Images from "./Images";
+import Gifs from "./Gifs";
 
 class App extends React.Component {
 
@@ -25,7 +25,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchForm onUpdate={this.fetch}/>
-        <Images gifs={this.state.results}/>
+        <Gifs gifs={this.state.results}/>
       </div>
     );
   }
