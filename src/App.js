@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
-import apiKey from './api-key';
 import { SearchForm } from "./SearchForm";
 import * as api from "./api";
+import Images from "./Images";
 
 class App extends React.Component {
 
@@ -18,20 +17,15 @@ class App extends React.Component {
 
   fetch(query, limit) {
     api.fetchGifs(query, limit)
-      .then(results => results && this.setState({results: results}))
-      .catch(err  => console.log('fetch error ', err.message));
+      .then(results => results && this.setState({ results: results }))
+      .catch(err => console.log('fetch error ', err.message));
   }
 
   render() {
     return (
       <div className="App">
-        <SearchForm onUpdate={this.fetch} />
-        <div>
-          {this.state.results.map(result => <img src={result.images.downsized.url}
-                                                 alt={result.title}
-                                                 key={result.id}/>)}
-        </div>
-
+        <SearchForm onUpdate={this.fetch}/>
+        <Images gifs={this.state.results}/>
       </div>
     );
   }
