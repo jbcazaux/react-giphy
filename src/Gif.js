@@ -22,6 +22,7 @@ export default class Gif extends React.Component {
   }
 
   componentWillUnmount() {
+    this.fakeImg.onload = null;
     delete this.fakeImg;
   }
 }
